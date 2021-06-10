@@ -169,9 +169,7 @@ public class UploadWorker extends ListenableWorker implements CountProgressListe
 
           if (file.exists() && file.isFile()) {
             fileExistsCount++;
-            String mimeType = GetMimeType(item.getPath());
-            MediaType contentType = MediaType.parse(mimeType);
-            RequestBody fileBody = RequestBody.create(file, contentType);
+            RequestBody fileBody = RequestBody.create(file, null);
             formRequestBuilder.addFormDataPart(item.getFieldname(), file.getName(), fileBody);
           } else {
             Log.d(TAG, "File does not exists -> file:" + item.getPath());
